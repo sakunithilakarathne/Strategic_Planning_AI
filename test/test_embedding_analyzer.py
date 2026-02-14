@@ -12,7 +12,7 @@ from pathlib import Path
 # Get current file location
 BASE_DIR = Path(__file__).resolve().parent.parent
 action_plan_json = BASE_DIR / "data" / "action_plan.json"
-strategic_plan_json = BASE_DIR / "data" / "sstrategic_plan.json"
+strategic_plan_json = BASE_DIR / "data" / "strategic_plan.json"
 
 def main():
     print("=" * 70)

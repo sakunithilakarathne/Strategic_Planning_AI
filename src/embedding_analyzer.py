@@ -138,8 +138,8 @@ class EmbeddingAnalyzer:
                     'title': section['title'],
                     'type': 'strategic_objective',
                     'document': 'strategic_plan',
-                    'budget': section.get('budget', 0),
-                    'timeline': section.get('timeline', ''),
+                    'budget': float(section.get('budget') or 0),
+                    'timeline': section.get('timeline') or '',
                     'kpi_count': len(section.get('kpis', []))
                 }
                 
@@ -183,9 +183,9 @@ class EmbeddingAnalyzer:
                     'title': section['title'],
                     'type': 'action_item',
                     'document': 'action_plan',
-                    'budget': section.get('budget', 0),
-                    'timeline': section.get('timeline', ''),
-                    'priority': section.get('priority', ''),
+                    'budget': float(section.get('budget') or 0),
+                    'timeline': section.get('timeline') or '',
+                    'priority': section.get('priority') or '',
                     'kpi_count': len(section.get('kpis', []))
                 }
                 
