@@ -25,3 +25,5 @@ numpy==1.26.3
 
 # Note: After installing requirements, download spaCy model:
 # python -m spacy download en_core_web_sm
+
+#pip install streamlit plotly pandas
