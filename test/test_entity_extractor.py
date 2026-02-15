@@ -5,13 +5,7 @@ Extracts and matches explicit entities between Strategic and Action Plans
 
 import json
 from src.entity_extractor import EntityExtractor
-from pathlib import Path
-
-# Get current file location
-BASE_DIR = Path(__file__).resolve().parent.parent
-action_plan_json = BASE_DIR / "data" / "action_plan.json"
-strategic_plan_json = BASE_DIR / "data" / "strategic_plan.json"
-
+from configs.configurations import STRATEGIC_PLAN_PATH, ACTION_PLAN_PATH, ENTITY_ANALYSIS_RESULTS_PATH
 
 def main():
     print("=" * 70)
@@ -21,11 +15,11 @@ def main():
     # Load processed JSON documents
     print("\nLoading documents...")
     try:
-        with open(strategic_plan_json, 'r', encoding='utf-8') as f:
+        with open(STRATEGIC_PLAN_PATH, 'r', encoding='utf-8') as f:
             strategic_doc = json.load(f)
         print(f"  ✓ Strategic Plan loaded")
         
-        with open(action_plan_json, 'r', encoding='utf-8') as f:
+        with open(ACTION_PLAN_PATH, 'r', encoding='utf-8') as f:
             action_doc = json.load(f)
         print(f"  ✓ Action Plan loaded")
         
@@ -51,7 +45,7 @@ def main():
     )
     
     # Save results
-    extractor.save_results(result, 'entity_analysis_results.json')
+    extractor.save_results(result, ENTITY_ANALYSIS_RESULTS_PATH)
     
     # Print detailed insights
     print("\n" + "=" * 70)
@@ -100,10 +94,6 @@ def main():
     print(f"  - Overall Entity Match Score: {result.overall_score:.1f}/100")
     print(f"  - {result.matched_entities}/{result.total_strategic_entities} entities matched")
     print(f"  - Match Rate: {result.match_rate:.1f}%")
-    print("\nNext Steps:")
-    print("  - Review unmatched entities")
-    print("  - Combine with embedding analysis score")
-    print("  - Proceed to final synchronization assessment")
 
 
 if __name__ == "__main__":

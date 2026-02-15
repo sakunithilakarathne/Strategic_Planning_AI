@@ -6,11 +6,8 @@ Demonstrates how to use the processor with your Strategic and Action Plans
 from src.document_processor import DocumentProcessor
 import json
 from pathlib import Path
+from configs.configurations import STRATEGIC_DOCUMENT_PATH, ACTION_DOCUMENT_PATH
 
-# Get current file location
-BASE_DIR = Path(__file__).resolve().parent.parent
-action_data_path = BASE_DIR / "data" / "action_plan_commercial_bank.md"
-strategic_pdf_path = BASE_DIR / "data" / "strategic_plan_commercial_bank.md"
 
 def main():
 
@@ -27,7 +24,7 @@ def main():
     print("-" * 60)
     try:
         strategic_doc = processor.process_document(
-            strategic_pdf_path,  
+            STRATEGIC_DOCUMENT_PATH,  
             doc_type="strategic_plan"
         )
         
@@ -51,7 +48,7 @@ def main():
     print("-" * 60)
     try:
         action_doc = processor.process_document(
-            action_data_path,
+            ACTION_DOCUMENT_PATH,
             doc_type="action_plan"
         )
         

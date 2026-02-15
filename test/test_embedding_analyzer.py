@@ -7,12 +7,12 @@ import os
 import json
 from dotenv import load_dotenv
 from src.embedding_analyzer import EmbeddingAnalyzer
-from pathlib import Path
+from configs.configurations import STRATEGIC_PLAN_PATH, ACTION_PLAN_PATH,EMBEDDING_ANALYZER_RESULTS_PATH
 
-# Get current file location
-BASE_DIR = Path(__file__).resolve().parent.parent
-action_plan_json = BASE_DIR / "data" / "action_plan.json"
-strategic_plan_json = BASE_DIR / "data" / "strategic_plan.json"
+# # Get current file location
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# action_plan_json = BASE_DIR / "data" / "action_plan.json"
+# strategic_plan_json = BASE_DIR / "data" / "strategic_plan.json"
 
 def main():
     print("=" * 70)
@@ -41,11 +41,11 @@ def main():
     # Load processed JSON documents
     print("\nLoading processed documents...")
     try:
-        with open(strategic_plan_json, 'r', encoding='utf-8') as f:
+        with open(STRATEGIC_PLAN_PATH, 'r', encoding='utf-8') as f:
             strategic_doc = json.load(f)
         print(f"  ✓ Strategic Plan: {len(strategic_doc.get('sections', []))} sections")
         
-        with open(action_plan_json, 'r', encoding='utf-8') as f:
+        with open(ACTION_PLAN_PATH, 'r', encoding='utf-8') as f:
             action_doc = json.load(f)
         print(f"  ✓ Action Plan: {len(action_doc.get('sections', []))} sections")
         
@@ -74,7 +74,7 @@ def main():
     )
     
     # Save detailed results
-    analyzer.save_results(result, 'embedding_analysis_results.json')
+    analyzer.save_results(result, EMBEDDING_ANALYZER_RESULTS_PATH)
     
     # Print additional insights
     print("\n" + "=" * 70)
@@ -114,10 +114,6 @@ def main():
     print("=" * 70)
     print("\nGenerated files:")
     print("  - embedding_analysis_results.json (detailed results)")
-    print("\nNext steps:")
-    print("  - Review objectives with weak support")
-    print("  - Proceed to Entity Matching analysis")
-    print("  - Combine scores for overall synchronization assessment")
 
 
 if __name__ == "__main__":
